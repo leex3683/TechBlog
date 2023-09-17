@@ -1,0 +1,14 @@
+{{#each blogposts as |blogpost|}}
+
+<div class="card py-2 ">
+  <div class="card-header">
+    posted by {{blogpost.user.name}} on {{format_date blogpost.date_created}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{blogpost.name}}</h5>
+    <p class="card-text">{{blogpost.post}}</p>
+    <a href="/update/{{blogpost.id}}" class="btn btn-primary blogpost{{blogpost.id}}">Update</a>
+  </div>
+</div>
+
+{{/each}}

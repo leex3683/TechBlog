@@ -2,7 +2,7 @@
     {
       "name": "This project is really hard",
       "post": "I've been having a bunch of trouble with the most recent assignment. ",
-      "user_id": 1
+      "user_id": 4
     },
     {
         "name": "Climbing is fun",
@@ -13,6 +13,11 @@
     {
         "name": "Using Bcrypt",
         "post": "Is using Bcrypt really that secure? Let me know if anyone has had any issues with this in real life.",
+        "user_id": 4
+    },
+    {
+        "name": "Giving up",
+        "post": "I don't know anymore",
         "user_id": 2
     }
   ]
