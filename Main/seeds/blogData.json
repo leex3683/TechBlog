@@ -1,0 +1,19 @@
+[
+    {
+      "name": "This project is really hard",
+      "post": "I've been having a bunch of trouble with the most recent assignment. ",
+      "user_id": 1
+    },
+    {
+        "name": "Climbing is fun",
+        "post": "I know it's not related to tech, but I just went climbing for the first time, and it was really fun. Everyone should try it.",
+        "user_id": 1
+      
+    },
+    {
+        "name": "Using Bcrypt",
+        "post": "Is using Bcrypt really that secure? Let me know if anyone has had any issues with this in real life.",
+        "user_id": 2
+    }
+  ]
+  
