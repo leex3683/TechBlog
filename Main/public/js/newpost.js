@@ -1,14 +1,14 @@
-const updateFormHandler = async (event) => {
+const newPostFormHandler = async (event) => {
     event.preventDefault();
 
-    // Collect values from the update
+    // Collect values from the new post
     const name = document.querySelector('#title').value.trim();
     const post = document.querySelector('#post').value.trim();
-    const id = document.querySelector("#blogpost").dataset.indexNumber
-    if (name && post) {
-      // Send a PUT request to the API endpoint
-      const response = await fetch(`/update/${id}`, {
-        method: 'PUT',
+
+    if (post) {
+      // Send a POST request to the Homeroutes
+      const response = await fetch(`/newpost`, {
+        method: 'POST',
         body: JSON.stringify({ name, post }),
         headers: { 'Content-Type': 'application/json' },
       });
@@ -24,6 +24,6 @@ const updateFormHandler = async (event) => {
   };
 
   document
-    .querySelector('.update-form')
-    .addEventListener('submit', updateFormHandler);
+    .querySelector('.newblogpost')
+    .addEventListener('submit', newPostFormHandler);
   

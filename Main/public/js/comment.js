@@ -1,13 +1,9 @@
 const commentFormHandler = async (event) => {
     event.preventDefault();
 
-    // Collect values from the update
+    // Collect values from the comment
     const post = document.querySelector('#comment').value.trim();
     const blogpost_id = document.querySelector("#blogcomment").dataset.indexNumber
-
-    console.log(post)
-    console.log(blogpost_id)
-
    
     if (post) {
       // Send a POST request to the Homeroute
@@ -18,8 +14,8 @@ const commentFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        // If successful, redirect the browser to the profile page
-        document.location.replace('/');
+        // If successful, reload page
+        document.location.replace(`/comment/${blogpost_id}`);
       } else {
         alert(response.statusText);
       }

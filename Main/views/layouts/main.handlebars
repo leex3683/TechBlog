@@ -14,16 +14,16 @@
       <h1>
         <a href="/">Tech Blog</a>
       </h1>
-      <nav>
+      <nav class="pb-2">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
           <a href="/">Home</a>
           <a href="/dashboard">Dashboard</a>
-          <button class="button" id="logout">logout</button>
+          <button class="btn btn-primary" id="logout">logout</button>
         {{else}}
           <a href="/">Home</a>
-          <a href="/login">login</a>
           <a href="/dashboard">Dashboard</a>
+          <a href="/login">login</a>
         {{/if}}
       </nav>
 
