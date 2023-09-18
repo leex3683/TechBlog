@@ -3,10 +3,10 @@
   <div class="card-header">
     posted by {{blogpost.user.name}} on {{format_date blogpost.date_created}}
   </div>
-  <div class="card-body">
+    <div class="card-body">
     <h5 class="card-title">{{blogpost.name}}</h5>
     <p class="card-text">{{blogpost.post}}</p>
-    <a href="#" class="btn btn-primary">comment</a>
+    <a href="/comment/{{blogpost.id}}" class="btn btn-primary">View</a>
   </div>
 </div>
 
