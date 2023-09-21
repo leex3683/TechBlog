@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { Blogpost, User, Comment } = require("../models");
-const withAuth = require('../utils/auth');
+const withAuth = require("../utils/auth");
 
 //Redner homepage
 router.get("/", async (req, res) => {
@@ -73,16 +73,14 @@ router.get("/newpost", withAuth, async (req, res) => {
 });
 
 //post new blog
-router.post("/newpost",withAuth, async (req, res) => {
+router.post("/newpost", withAuth, async (req, res) => {
   // create a new blogpost
   try {
-    const blogpostData = await Blogpost.create(
-      {
-        name: req.body.name,
-        post: req.body.post,
-        user_id: req.session.user_id,
-      },
-    );
+    const blogpostData = await Blogpost.create({
+      name: req.body.name,
+      post: req.body.post,
+      user_id: req.session.user_id,
+    });
     if (!blogpostData) {
       res.status(404).json({ message: "Couldn't create blogpost" });
       return;
@@ -124,7 +122,7 @@ router.get("/update/:id", withAuth, async (req, res) => {
 });
 
 //update your own post
-router.put("/update/:id",withAuth, async (req, res) => {
+router.put("/update/:id", withAuth, async (req, res) => {
   // update a blogpost by its `id` value
   try {
     const blogpostData = await Blogpost.update(
@@ -150,16 +148,14 @@ router.put("/update/:id",withAuth, async (req, res) => {
 });
 
 //Comment on a blogpost
-router.post("/comment",withAuth, async (req, res) => {
+router.post("/comment", withAuth, async (req, res) => {
   // add a comment. Save the user id and blogpost_id
   try {
-    const commentData = await Comment.create(
-      {
-        posted_comment: req.body.post,
-        user_id: req.session.user_id,
-        blogpost_id: req.body.blogpost_id,
-      },
-    );
+    const commentData = await Comment.create({
+      posted_comment: req.body.post,
+      user_id: req.session.user_id,
+      blogpost_id: req.body.blogpost_id,
+    });
 
     if (!commentData) {
       res.status(404).json({ message: "No blogpost found with that id!" });
@@ -173,7 +169,7 @@ router.post("/comment",withAuth, async (req, res) => {
 });
 
 //Renders blogpost, comments and a form to enter a comment
-router.get("/comment/:id",withAuth, async (req, res) => {
+router.get("/comment/:id", withAuth, async (req, res) => {
   try {
     // Get all blogposts and JOIN with user data
     const blogpostData = await Blogpost.findAll({
@@ -196,7 +192,9 @@ router.get("/comment/:id",withAuth, async (req, res) => {
 
     // Serialize data so the template can read it
     const blogposts = blogpostData.map((post) => post.get({ plain: true }));
-    const blogpostcomments = commentData.map((bpcomment) => bpcomment.get({ plain: true }));
+    const blogpostcomments = commentData.map((bpcomment) =>
+      bpcomment.get({ plain: true })
+    );
 
     // Pass serialized data and session flag into template
     res.render("leavecomment", {
@@ -204,6 +202,25 @@ router.get("/comment/:id",withAuth, async (req, res) => {
       blogpostcomments,
       logged_in: req.session.logged_in,
     });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.delete("/delete/:id", withAuth, async (req, res) => {
+  try {
+    const blogpostData = await Blogpost.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!blogpostData) {
+      res.status(404).json({ message: "No blogpost found with this id!" });
+      return;
+    }
+
+    res.status(200).json(blogpostData);
   } catch (err) {
     res.status(500).json(err);
   }
