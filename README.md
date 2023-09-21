@@ -47,6 +47,9 @@
   ## Contributing
   Michael Lee
 
+  ## Support
+  A lot of this code was either taken directly from the section 14 miniproject (whether boilerplate, like the server.js file, or less so, such as auth.js and helpers.js in the utils folder), or was reworked for the purposes of this assignment.
+
   ## Tests
   N/A
 
